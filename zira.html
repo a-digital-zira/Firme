@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZIRA MARKETING SRL - Informații Companie</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f5f6f8;
+            margin: 0;
+            padding: 20px;
+            color: #2d3748;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            padding: 30px 40px;
+        }
+
+        .company-header {
+            border-bottom: 2px solid #2b6cb0;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            color: #2a4365;
+            font-size: 2.4rem;
+            margin: 0 0 5px 0;
+            font-weight: 700;
+        }
+
+        .company-subtitle {
+            color: #4a5568;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .info-section {
+            margin-bottom: 25px;
+        }
+
+        .info-item {
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        .info-item strong {
+            color: #2b6cb0;
+        }
+
+        .status-active {
+            color: #38a169;
+            font-weight: 600;
+        }
+
+        a {
+            color: #2b6cb0;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="loading">Se încarcă datele companiei...</div>
+        <div id="company-data" style="display: none;">
+            <div class="company-header">
+                <h1>ZIRA MARKETING S.R.L.</h1>
+                <div class="company-subtitle">din Sat Zimbor, Comuna Zimbor - CUI 46154679</div>
+            </div>
+
+            <div class="info-section">
+                <p class="info-item">
+                    Codul fiscal al companiei <strong>ZIRA MARKETING S.R.L.</strong> din 
+                    <strong>Sălaj</strong> este <strong>46154679</strong>.
+                </p>
+                
+                <p class="info-item">
+                    Compania a fost înființată în anul <strong>2022</strong> și are 
+                    <strong>3 ani</strong> vechime.
+                </p>
+
+                <p class="info-item">
+                    ZIRA MARKETING S.R.L. are adresa sediului social în 
+                    <strong>Jud. Sălaj</strong>, Sat Zimbor, Comuna Zimbor, Nr. 215.
+                </p>
+            </div>
+
+            <div class="info-section">
+                <div class="info-item">
+                    <strong>Cod de Înmatriculare:</strong> J31/386/2022
+                </div>
+                
+                <div class="info-item">
+                    <strong>EUID:</strong> ROONRC.J31/386/2022
+                </div>
+
+                <div class="info-item">
+                    <strong>Stare Firmă:</strong> 
+                    <span class="status-active">Activă</span>
+                </div>
+
+                <div class="info-item">
+                    <strong>Website Oficial:</strong> 
+                    <a href="https://zira.ro/" target="_blank">https://zira.ro/</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simulating API call with provided static response
+        const mockResponse = [{
+            "id": "46154679",
+            "cui": 46154679,
+            "denumire": ["ZIRA MARKETING S.R.L."],
+            "cod_inmatriculare": "J31/386/2022",
+            "euid": "ROONRC.J31/386/2022",
+            "adresa_completa": ["Sat Zimbor, Comuna Zimbor, Nr. 215, Județ Sălaj, Cod poștal 457370"],
+            "localitate": ["Sat Zimbor, Comuna Zimbor"],
+            "judet": ["Sălaj"],
+            "cod_stare": [1048],
+            "website": ["https://zira.ro/"],
+            "_version_": 1829547667953287168
+        }];
+
+        function renderCompanyData() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('company-data').style.display = 'block';
+        }
+
+        // Simulate API call delay
+        setTimeout(renderCompanyData, 1000);
+    </script>
+</body>
+</html>
