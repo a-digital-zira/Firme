@@ -54,6 +54,8 @@
             color: #2b6cb0;
         }
 
+        strong {color: #2b6cb0;}
+
         .status-active {
             color: #38a169;
             font-weight: 600;
@@ -67,6 +69,15 @@
         a:hover {
             text-decoration: underline;
         }
+        #align-right{
+            position: relative;
+            left: 50%;
+        }
+        .company-footer{
+            border-bottom: 2px solid #2b6cb0;
+        }
+       
+
     </style>
 </head>
 <body>
@@ -75,39 +86,42 @@
         <div id="company-data" style="display: none;">
             <div class="company-header">
                 <h1>ZIRA MARKETING S.R.L.</h1>
-                <div class="company-subtitle">din Sat Zimbor, Comuna Zimbor - CUI 46154679</div>
+                <div class="company-subtitle"> <strong>Stare Firmă:</strong> 
+                    <span class="status-active">Activă</span></div>
             </div>
 
             <div class="info-section">
-                <p class="info-item">
-                    Codul fiscal al companiei <strong>ZIRA MARKETING S.R.L.</strong> din 
-                    <strong>Sălaj</strong> este <strong>46154679</strong>.
+                <h2>Informatii generale</h2>               
+                 <p class="info-item">
+                    Codul fiscal al companiei ZIRA MARKETING S.R.L. din 
+                    Sălaj este 46154679.
                 </p>
-                
-                <p class="info-item">
-                    Compania a fost înființată în anul <strong>2022</strong> și are 
-                    <strong>3 ani</strong> vechime.
-                </p>
-
-                <p class="info-item">
-                    ZIRA MARKETING S.R.L. are adresa sediului social în 
-                    <strong>Jud. Sălaj</strong>, Sat Zimbor, Comuna Zimbor, Nr. 215.
-                </p>
+                <div class="info-item">
+                <strong>CUI:</strong> <p>46154679</p>
+                </div>
             </div>
 
             <div class="info-section">
                 <div class="info-item">
-                    <strong>Cod de Înmatriculare:</strong> J31/386/2022
+                    <strong>Cod de Înmatriculare:</strong> </br>J31/386/2022
                 </div>
                 
                 <div class="info-item">
-                    <strong>EUID:</strong> ROONRC.J31/386/2022
+                    <strong>EUID:</strong> <p>ROONRC.J31/386/2022</p>
                 </div>
 
-                <div class="info-item">
-                    <strong>Stare Firmă:</strong> 
-                    <span class="status-active">Activă</span>
-                </div>
+                <p class="info-item">
+                    <strong>Data Infiintarii:</strong><p class="company-footer"> 2022 </p>
+                </p>
+                <h2>Date de Contact </h2>
+                              
+            <strong id="align-right">Adresa: </strong>
+            <p class="info-item" id="align-right">
+                
+                Jud. Sălaj, Sat Zimbor, Comuna Zimbor, Nr. 215.
+            </p>
+
+               
 
                 <div class="info-item">
                     <strong>Website Oficial:</strong> 
