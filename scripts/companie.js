@@ -29,7 +29,8 @@ async function loadCompanyDetails() {
       ? company.denumire[0]
       : company.denumire || "--";
     const cui = company.cui || "--";
-    const caen = company.cod_stare || "--";
+    const codStare = company.cod_stare || "--";
+    const codStareFormat = codStare.toString().replace(/,/g, " ");
     const regComert = company.cod_inmatriculare || "--";
     const euid = company.euid || "--";
     const adresa = Array.isArray(company.adresa_completa)
@@ -52,7 +53,9 @@ async function loadCompanyDetails() {
       </div>
 
       <div class="company-status f-row separator">
-        <p>Stare firmă: <span id="company-status">funcțiune</span></p>
+        <p>Stare firmă: <span class=${
+          codStare.includes(1048) ? "green" : "red"
+        }>${codStare.includes(1048) ? "Funcționare" : "Radiată"}</span></p>
       </div>
 
       <div class="company-details f-col">
@@ -73,8 +76,8 @@ async function loadCompanyDetails() {
           </div>
 
           <div class="code-field">
-            <h4>CAEN:</h4>
-            <p id="company-caen">${caen}</p>
+            <h4>Cod Stare:</h4>
+            <p id="company-cod-stare">${codStareFormat}</p>
           </div>
 
           <div class="code-field">

@@ -1,49 +1,3 @@
-:root {
-  --royal-blue: #4169e1;
-  --pastel-blue: #a7c7e775;
-  --bronze: #cd7f32;
-  --bras: #e1c16e75;
-  --jade: #00a36c;
-  --seafoam-green: #9fe2bf;
-  --whitesmoke: #99999955;
-  --dark-gray: #444444;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
-    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji" !important;
-  background-color: #fafbfd;
-}
-
-a {
-  text-decoration: none;
-  color: var(--royal-blue);
-}
-
-.f-row {
-  display: flex;
-  flex-direction: row;
-}
-
-.f-col {
-  display: flex;
-  flex-direction: column;
-}
-
-.hover-anim {
-  transition: transform 0.2s ease-in-out;
-
-  &:hover {
-    transform: translateY(-1px);
-  }
-}
-
 main {
   display: flex;
   flex-direction: column;
@@ -59,17 +13,11 @@ main {
 }
 
 .left {
-  min-width: 320px;
+  max-width: 320px;
   gap: 1.5rem;
 
-  h1 {
-    font-size: 2.5rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--whitesmoke);
-
-    span {
-      color: #c4407c;
-    }
+  .logo {
+    width: 260px;
   }
 
   #customForm {
@@ -214,8 +162,14 @@ main {
         border-radius: 6px;
 
         ul > li::marker {
-          color: var(--jade);
           font-size: 1.6rem;
+        }
+
+        ul > li.valid::marker {
+          color: var(--jade);
+        }
+        ul > li.invalid::marker {
+          color: var(--crimson);
         }
 
         ul {
@@ -232,7 +186,7 @@ main {
           flex-wrap: wrap;
 
           .company-col {
-            gap: 0.8rem;
+            gap: 0.4rem;
           }
         }
 

@@ -85,15 +85,16 @@ function renderCompanies(companies) {
   }
 
   companies.forEach((company) => {
-    const codStareFormatat = (company.cod_stare || "N/A")
-      .toString()
-      .replace(/,/g, " ");
+    const codStare = company.cod_stare;
+    const codStareFormatat = codStare.toString().replace(/,/g, " ");
 
     container.innerHTML += `
       <div class="company-details f-col">
 
       <ul>
-        <li><h2>${company.denumire || "Fără denumire"}</h2> </li>
+        <li class=${codStare.includes(1048) ? "valid" : "invalid"}><h2>${
+      company.denumire || "Fără denumire"
+    }</h2> </li>
       </ul>
        
       <div class="f-row company-address">
