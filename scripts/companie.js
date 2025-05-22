@@ -55,7 +55,7 @@ async function loadCompanyDetails() {
       <div class="company-status f-row separator">
         <p>Stare firmă: <span class=${
           codStare.includes(1048) ? "green" : "red"
-        }>${codStare.includes(1048) ? "Funcționare" : "Radiată"}</span></p>
+        }>${codStare.includes(1048) ? "Funcționare" : "Inactivă"}</span></p>
       </div>
 
       <div class="company-details f-col">
