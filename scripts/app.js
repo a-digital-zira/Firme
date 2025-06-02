@@ -8,30 +8,34 @@ const filterContainer = document.querySelector(".active-filters");
 const clearFiltersBtn = document.getElementById("clearFilters");
 
 let allCompanies = [];
+let currentPage = 1;
+let rowsPerPage = 20;
+let totalPages = 1;
 
 // Submit form
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const searchValue = input.value.trim();
   localStorage.setItem("lastSearch", searchValue);
-  await searchCompany(searchValue);
+  currentPage = 1; // Reset to page 1 on new search
+  await searchCompany(searchValue, currentPage, rowsPerPage);
 });
 
 // Load saved search on page load
 window.addEventListener("DOMContentLoaded", async () => {
   const savedSearch = localStorage.getItem("lastSearch") || "";
   input.value = savedSearch;
-  await searchCompany(savedSearch);
+  await searchCompany(savedSearch, currentPage, rowsPerPage);
 });
 
-// Company search
-async function searchCompany(query = "") {
+// Company search with pagination
+async function searchCompany(query = "", page = 1, rows = 20) {
   try {
     const actualQuery = query.trim() || "a";
     const response = await fetch(
       `https://api.peviitor.ro/v6/firme/qsearch/?q=${encodeURIComponent(
         actualQuery
-      )}`
+      )}&page=${page}&rows=${rows}`
     );
 
     if (!response.ok) {
@@ -46,11 +50,15 @@ async function searchCompany(query = "") {
       return;
     }
 
+    // Update pagination info
+    totalPages = data.pagination?.total_pages || 1;
+
     allCompanies = data.docs.sort((a, b) =>
       (a.denumire[0] || "").localeCompare(b.denumire[0] || "")
     );
 
     renderCompanies(applyFilters(allCompanies));
+    updatePaginationControls();
   } catch (error) {
     console.error("Căutarea a eșuat:", error);
     container.innerHTML = "<em>Eroare la încărcare date: nu s-a putut conecta la server.</em>";
@@ -228,3 +236,44 @@ clearFiltersBtn.addEventListener("click", () => {
   updateActiveFiltersUI();
   renderCompanies(applyFilters(allCompanies));
 });
+
+// Pagination controls
+function updatePaginationControls() {
+  // Remove existing pagination controls
+  let paginationContainer = document.getElementById("paginationContainer");
+  if (!paginationContainer) {
+    paginationContainer = document.createElement("div");
+    paginationContainer.id = "paginationContainer";
+    container.insertAdjacentElement("afterend", paginationContainer);
+  }
+
+  paginationContainer.innerHTML = `
+    <div style="margin-top: 20px; text-align: center;">
+      <button id="prevPage" ${currentPage === 1 ? "disabled" : ""}>Previous</button>
+      <span>Page ${currentPage} of ${totalPages}</span>
+      <button id="nextPage" ${currentPage === totalPages ? "disabled" : ""}>Next</button>
+    </div>
+  `;
+
+  // Add event listeners for pagination buttons
+  const prevButton = document.getElementById("prevPage");
+  const nextButton = document.getElementById("nextPage");
+
+  if (prevButton) {
+    prevButton.addEventListener("click", async () => {
+      if (currentPage > 1) {
+        currentPage--;
+        await searchCompany(input.value.trim(), currentPage, rowsPerPage);
+      }
+    });
+  }
+
+  if (nextButton) {
+    nextButton.addEventListener("click", async () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        await searchCompany(input.value.trim(), currentPage, rowsPerPage);
+      }
+    });
+  }
+}
