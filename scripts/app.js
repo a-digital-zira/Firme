@@ -46,22 +46,28 @@ async function searchCompany(query = "", page = 1, rows = 20) {
 
     // Check if data.docs is an array
     if (!data.docs || !Array.isArray(data.docs)) {
-      container.innerHTML = "<em>Eroare la încărcare date: răspuns invalid de la server.</em>";
+      container.innerHTML =
+        "<em>Eroare la încărcare date: răspuns invalid de la server.</em>";
       return;
     }
 
     // Update pagination info
     totalPages = data.pagination?.total_pages || 1;
 
-    allCompanies = data.docs.sort((a, b) =>
-      (a.denumire[0] || "").localeCompare(b.denumire[0] || "")
-    );
+    allCompanies = data.docs.sort((a, b) => {
+      const nameA =
+        Array.isArray(a.denumire) && a.denumire[0] ? a.denumire[0] : "";
+      const nameB =
+        Array.isArray(b.denumire) && b.denumire[0] ? b.denumire[0] : "";
+      return nameA.localeCompare(nameB);
+    });
 
     renderCompanies(applyFilters(allCompanies));
     updatePaginationControls();
   } catch (error) {
     console.error("Căutarea a eșuat:", error);
-    container.innerHTML = "<em>Eroare la încărcare date: nu s-a putut conecta la server.</em>";
+    container.innerHTML =
+      "<em>Eroare la încărcare date: nu s-a putut conecta la server.</em>";
   }
 }
 
@@ -82,7 +88,9 @@ checkboxHasWebsite.addEventListener("change", () => {
 function applyFilters(companies) {
   // Website filtering disabled due to missing website field in API
   if (checkboxNoWebsite.checked || checkboxHasWebsite.checked) {
-    console.warn("Website filtering is disabled due to missing website data in API.");
+    console.warn(
+      "Website filtering is disabled due to missing website data in API."
+    );
     // Optionally, show a UI message:
     // container.innerHTML = "<em>Filtrarea după website este dezactivată temporar.</em>";
     return companies;
@@ -249,9 +257,13 @@ function updatePaginationControls() {
 
   paginationContainer.innerHTML = `
     <div style="margin-top: 20px; text-align: center;">
-      <button id="prevPage" ${currentPage === 1 ? "disabled" : ""}>Previous</button>
+      <button id="prevPage" ${
+        currentPage === 1 ? "disabled" : ""
+      }>Previous</button>
       <span>Page ${currentPage} of ${totalPages}</span>
-      <button id="nextPage" ${currentPage === totalPages ? "disabled" : ""}>Next</button>
+      <button id="nextPage" ${
+        currentPage === totalPages ? "disabled" : ""
+      }>Next</button>
     </div>
   `;
 
