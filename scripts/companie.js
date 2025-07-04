@@ -43,8 +43,10 @@ async function loadCompanyDetails() {
       ? company.judet[0]
       : company.judet || "--";
     const website = Array.isArray(company.website)
-      ? company.website[0]
-      : company.website || "--";
+      ? company.website
+      : company.website
+      ? [company.website]
+      : [];
 
     const htmlContent = `
       <div class="company-heading f-col separator">
@@ -107,14 +109,24 @@ async function loadCompanyDetails() {
           </div>
         </div>
 
-        <div class="company-website">
-          <h3>Website</h3>
-          ${
-            website !== "--"
-              ? `<a href="${website}" target="_blank" id="company-website">${website}</a> <button class="copy-btn" data-copy="${website}" title="Copiază link">📋</button>`
-              : "--"
-          }
-        </div>
+<div class="company-website">
+  <h3>Website</h3>
+  ${
+    website.length > 0
+      ? website
+          .map(
+            (site, index) => `
+              <div class="website-entry">
+                <a href="${site}" target="_blank" class="company-website-link">${site}</a>
+                <button class="copy-btn" data-copy="${site}" title="Copiază link">📋</button>
+              </div>
+            `
+          )
+          .join("")
+      : "--"
+  }
+</div>
+
 
         <div class="company-address">
           <h3>Adresă completă</h3>
