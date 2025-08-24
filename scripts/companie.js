@@ -42,6 +42,15 @@ async function loadCompanyDetails() {
     const judet = Array.isArray(company.judet)
       ? company.judet[0]
       : company.judet || "--";
+    const brands = Array.isArray(company.brands)
+      ? company.brands[0]
+      : company.brands || "--";
+    const email = Array.isArray(company.email)
+      ? company.email[0]
+      : company.email || "--";
+    const scraper = Array.isArray(company.scraper)
+      ? company.scraper[0]
+      : company.scraper || "--";
     const website = Array.isArray(company.website)
       ? company.website
       : company.website
@@ -99,38 +108,60 @@ async function loadCompanyDetails() {
           </div>
 
           <div class="code-field">
+            <h4>Brand:</h4>
+            <p id="company-localitate">${brands}</p>
+          </div>
+          
+
+          </div>
+          
+          <div class="company-details-heading"> 
+          <h3>Date de contact</h3>
+          <p id="company-address">${adresa}</p>
+          </div>
+          <div class="company-details-data separator"> 
+          <div class="code-field">
+            <h4>Județ:</h4>
+            <p id="company-judet">${judet}</p>
+          </div>
+
+          <div class="code-field">
             <h4>Localitate:</h4>
             <p id="company-localitate">${localitate}</p>
           </div>
 
           <div class="code-field">
-            <h4>Județ:</h4>
-            <p id="company-judet">${judet}</p>
+            <h4>Email:</h4>
+            <a href="mailto:${email}" id="company-email">${email}</a>
+          </div>
+            
+          <div class="company-website">
+            <h4>Website</h4>
+            ${
+              website.length > 0
+                ? website
+                    .map(
+                      (site, index) => `
+                        <div class="website-entry">
+                          <a href="${site}" target="_blank" class="company-website-link">${site}</a>
+                          <button class="copy-btn" data-copy="${site}" title="Copiază link">📋</button>
+                        </div>
+                      `
+                    )
+                    .join("")
+                : "--"
+            }
           </div>
         </div>
 
-<div class="company-website">
-  <h3>Website</h3>
-  ${
-    website.length > 0
-      ? website
-          .map(
-            (site, index) => `
-              <div class="website-entry">
-                <a href="${site}" target="_blank" class="company-website-link">${site}</a>
-                <button class="copy-btn" data-copy="${site}" title="Copiază link">📋</button>
-              </div>
-            `
-          )
-          .join("")
-      : "--"
-  }
-</div>
-
-
-        <div class="company-address">
-          <h3>Adresă completă</h3>
-          <p id="company-address">${adresa}</p>
+        <div class="company-details-heading"> 
+          <h3>Alte informații</h3>
+        </div>
+        <div class="company-details-data"> 
+          <div class="code-field">
+            <h4>Link scraper:</h4>
+            <a href="${scraper}" target="_blank" id="company-scraper">${scraper}</a>
+          </div>
         </div>
       </div>
     `;
