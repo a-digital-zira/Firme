@@ -136,21 +136,19 @@ async function loadCompanyDetails() {
              <p id="company-localitate">${localitate}</p>
            </div>
 
-<div class="code-field">
-  <h4>Email:</h4>
-  ${
-    email === "--"
-      ? // Afișează doar paragraful cu "--" și NU butonul de copiere
-        `<p id="company-email">--</p>`
-      : // Afișează link-ul (<a>) ȘI butonul de copiere
-        `
-        <p>
-          <a href="mailto:${email}" id="company-email">${email}</a>
-          <button class="copy-btn" data-copy="${email}" title="Copiază email">📋</button>
-        </p>
-        `
-  }
-</div>
+           <div class="code-field">
+              <h4>Email:</h4>
+              ${
+                email === "--"
+                  ? `<p id="company-email">--</p>`
+                  : `
+                    <p>
+                      <a href="mailto:${email}" id="company-email">${email}</a>
+                      <button class="copy-btn" data-copy="${email}" title="Copiază email">📋</button>
+                    </p>
+                    `
+              }
+            </div>
            
            <div class="company-website">
              <h4>Website</h4>
@@ -177,7 +175,16 @@ async function loadCompanyDetails() {
          <div class="company-details-data"> 
            <div class="code-field">
              <h4>Link scraper:</h4>
-             <a href="${scraper}" target="_blank" id="company-scraper">${scraper}</a>
+              ${
+                scraper === "--"
+                  ? `<p id="company-scraper">--</p>`
+                  : `
+                    <p>
+                      <a href="mailto:${scraper}" id="company-scraper">${scraper}</a>
+                      <button class="copy-btn" data-copy="${scraper}" title="Copiază scraper">📋</button>
+                    </p>
+                    `
+              }
            </div>
          </div>
        </div>
