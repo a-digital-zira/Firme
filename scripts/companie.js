@@ -180,7 +180,7 @@ async function loadCompanyDetails() {
                   ? `<p id="company-scraper">--</p>`
                   : `
                     <p>
-                      <a href="mailto:${scraper}" id="company-scraper">${scraper}</a>
+                      <a href="${scraper}" target="_blank" id="company-scraper">${scraper}</a>
                       <button class="copy-btn" data-copy="${scraper}" title="Copiază scraper">📋</button>
                     </p>
                     `
