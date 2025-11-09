@@ -198,7 +198,7 @@ async function loadCompanyDetails() {
               }
            </div>
                       <div class="code-field">
-             <h4>Link scraper:</h4>
+             <h4>Link logo:</h4>
               ${
                 logo === "--"
                   ? `<p id="company-logo">--</p>`
