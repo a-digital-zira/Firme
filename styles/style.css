@@ -20,6 +20,18 @@ main {
     width: 260px;
   }
 
+  a {
+    max-width: fit-content;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--royal-blue);
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      color: var(--dark-blue);
+    }
+  }
+
   #customForm {
     display: flex;
     flex-direction: column;

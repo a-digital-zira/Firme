@@ -54,6 +54,12 @@ async function loadCompanyDetails() {
     const email = Array.isArray(company.email)
       ? company.email[0]
       : company.email || "--";
+    const phone = Array.isArray(company.phone)
+      ? company.phone[0]
+      : company.phone || "--";
+    const logo = Array.isArray(company.logo)
+      ? company.logo[0]
+      : company.logo || "--";
     const scraper = Array.isArray(company.scraper)
       ? company.scraper[0]
       : company.scraper || "--";
@@ -149,6 +155,11 @@ async function loadCompanyDetails() {
                     `
               }
             </div>
+
+            <div class="code-field">
+             <h4>Telefon:</h4>
+             <p id="company-phone">${phone}</p>
+           </div>
            
            <div class="company-website">
              <h4>Website</h4>
@@ -182,6 +193,19 @@ async function loadCompanyDetails() {
                     <p>
                       <a href="${scraper}" target="_blank" id="company-scraper">${scraper}</a>
                       <button class="copy-btn" data-copy="${scraper}" title="Copiază scraper">📋</button>
+                    </p>
+                    `
+              }
+           </div>
+                      <div class="code-field">
+             <h4>Link scraper:</h4>
+              ${
+                logo === "--"
+                  ? `<p id="company-logo">--</p>`
+                  : `
+                    <p>
+                      <a href="${logo}" target="_blank" id="company-logo">${logo}</a>
+                      <button class="copy-btn" data-copy="${logo}" title="Copiază logo">📋</button>
                     </p>
                     `
               }
